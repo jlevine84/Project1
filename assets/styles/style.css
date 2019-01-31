@@ -1,18 +1,40 @@
-div{
-    border-style: solid;
-    border-color: red;
-    border-width: 1px;
-}
-
-#header-row{
+#header-row {
     margin-top: 5%;
     height: 100px;
     text-align: center;    
 }
 
 #logo {
+    border: solid 1px red;
     line-height: 90px;
 }
 
 #login {
+    border: solid 1px red;
     padding-top: 30px;
+}
+
+#text-left {
+    height: 200px;
+    border: solid 1px black;
+}
+
+#widget {
+    height: 200px;
+    border: solid 1px black;
+}
+
+#text-right {
+    height: 200px;
+    border: solid 1px black;
+}
+
+#user-data {
+    height: 500px;
+    overflow: auto;
+}
+
+#translations, #user-info {
+    margin-top: 20px;
+    border: solid 1px blue;
+}
