@@ -9,7 +9,15 @@
 
     <!-- Boostrap Stylesheet -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!-- CSS Style Sheet -->
     <link rel="stylesheet" href="assets/styles/style.css">
+
+    <!-- jQuery script links -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src = "assets/javascript/javascript.js"></script>
+    <!-- Google Fonts Link -->
+    <link href="https://fonts.googleapis.com/css?family=Maven+Pro" rel="stylesheet">
+
 
     <!--Scripts-->
     <!--Firebase-->
@@ -21,6 +29,7 @@
     <!--Jquery-->
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src = "assets/javascript/javascript.js"></script>
+
   </head>
   <body>
 
@@ -31,6 +40,14 @@
         <div id="login" class="col-md-5">  
             <div class="login-container">
               <form action="/action_page.php">
+
+                 <input type="text" placeholder="Username" name="username">
+                 <input type="text" placeholder="Password" name="psw">
+                 <button type="submit" class="btn btn-danger">Login</button>
+             </form>
+        </div></div>
+    </div>      
+
                 <input type="text" placeholder="Username" name="username">
                 <input type="text" placeholder="Password" name="psw">
                 <button type="submit">Login</button>
@@ -38,27 +55,50 @@
             </div>
         </div>
       </div>      
+
     </div>
+
+    <br><br>
 
     <!---Container to hold input and output boxes -->
-    <div class="container">
-      <div class="row" id="translations">
-        <div class="col-4" id="text-left">text-left</div>
-        <div class="col-4" id="widget">widget</div>
-        <div class="col-4" id="text-right">text-right</div>
-      </div>
-    </div>
 
-    <!--Container to hold user info-->
-    <div class="container">
-      <div class="row" id="user-info">
-        <div class="col-12" id="user-data">user-data
+    <div class = "container">
+        <div class = "row" id="translations">
+          <div id="input" class = "col-md-5"><br> Insert Text to Translate Here: <input type="text" id="input-form" ></input>
+            <button id="audio-in"><img src="assets/images/audio_in.png" height="30px" width="38px"></button></div>
+          <div id="selections" class = "col-md-2">
+              <br><br>
+            <div class="dropdown">
+              <button class="dropbtn">Translate From</button>
+              <div class="dropdown-content">
+                <a>English</a>
+                <a>French</a>
+                <a>Spanish</a>
+              </div>
+            </div> <br><br><br><br><br>
+            <div class="dropdown">
+                <button class="dropbtn">Translate To</button>
+                <div class="dropdown-content">
+                  <a>English</a>
+                  <a>French</a>
+                  <a>Spanish</a>
+                </div>
+              </div></div>
+          <div id="output" class = "col-md-5"><br>Translated Text Here: <input type="text" id="input-form" ></input>
+            <button id="favorite-btn"> <img src="assets/images/favorite_heart.png" height="25px" width="25px"></button> 
+            <button id="audio-out"><img src="assets/images/audio_out.jpg" height="25px" width="25px"></button></div>          
+          </div></div>
+          <br><br>
 
-        </div>
-      </div>
-    </div>
-
-
-
+          <div class = "container">
+              <div class = "row" id="bottom-content-header">
+                  <div id="log-header" class = "col-md-7">Translation Log</div>
+                  <div id="favorites-header" class = "col-md-5">Favorited Phrases</div>                      
+              </div>
+              <div class = "row" id="bottom-content">
+                <div id="log" class = "col-md-7"></div>
+                <div id="favorites" class = "col-md-5"></div>                        
+              </div>
+          </div>
   </body>
 </html>
