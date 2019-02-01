@@ -10,8 +10,19 @@ body{
 
 #header-row{
     margin-top: 5%;
-    height: 100px;
-    text-align: center;    
+    height: 70px;
+    text-align: left; 
+    font-family: 'Maven Pro', sans-serif;   
+
+}
+
+#username, #pswd{
+    width: 180px;
+}
+
+#login {
+    padding: 0px;
+    margin: 0px;
 }
 
 .btn.btn-danger{
@@ -22,19 +33,36 @@ body{
 #logo-img{
     margin-top: 0px;
     padding-top: 0px;
+    margin-left: 0px;
+    padding-left: 0px;
+    line-height: 90px;
+    /* border-style: solid;
+    border-color: red;
+    border-width: 1px; */
+}
+
+#logo-row{
+    height: 100px;
+    border-bottom: solid, black, 2px;
 }
 
 #logo {
     line-height: 90px;
-    border-style: solid;
+    /* border-style: solid;
     border-color: red;
-    border-width: 1px;
+    border-width: 1px; */
+    height: 300px;
+    font-size: 25px;
 }
 
 #login {
     padding-top: 30px;
 }
 
+#logo-row{
+    border-bottom: 2px, double, black;
+
+}
 #input-form {
     height: 200px;
     width: 95%;
@@ -68,7 +96,10 @@ button{
     color: rgb(114, 68, 68);
     padding-top: 3px;
     border-bottom: solid, black, 1px;
- ]
+}
+
+#log-header{
+    text-align: left;
 }
 
 #log, #favorites{
