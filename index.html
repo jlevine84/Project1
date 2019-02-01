@@ -10,6 +10,12 @@
     <!-- Boostrap Stylesheet -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/styles/style.css">
+
+    
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src = "assets/javascript/javascript.js"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
   </head>
   <body>
 
@@ -28,15 +34,50 @@
     </div>      
     </div>
 
+    <br><br>
+
     <!---Container to hold input and output boxes -->
     <div class = "container">
         <div class = "row" id="translations">
-          <div class = "col-md-"
+          <div id="input" class = "col-md-5"><br> Insert Text to Translate Here: <input type="text" id="input-form" ></input>
+            <button id="audio-in">Audio In</button></div>
+          <div id="selections" class = "col-md-2">
+              <br><br>
+            <div class="dropdown">
+              <button class="dropbtn">Translate From</button>
+              <div class="dropdown-content">
+                <a>English</a>
+                <a>French</a>
+                <a>Spanish</a>
+              </div>
+            </div> <br><br><br><br><br>
+            <div class="dropdown">
+                <button class="dropbtn">Translate To</button>
+                <div class="dropdown-content">
+                  <a>English</a>
+                  <a>French</a>
+                  <a>Spanish</a>
+                </div>
+              </div></div>
+          <div id="output" class = "col-md-5"><br>Translated Text Here: <input type="text" id="input-form" ></input>
+            <button id="favorite-btn">Favorite</button> <button id="audio-out">Audio Out</button></div>          
+          </div></div>
+          <br>
+
+          <div class = "container">
+              <div class = "row" id="bottom-content-header">
+                  <div id="log-header" class = "col-md-7">Translation Log</div>
+                  <div id="favorites-header" class = "col-md-5">Favorited Phrases</div>                      
+              </div>
+              <div class = "row" id="bottom-content">
+                <div id="log" class = "col-md-7"></div>
+                <div id="favorites" class = "col-md-5"></div>                        
+              </div>
+          </div>      
+              
 
 
 
 
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src = "assets/javascript/javascript.js"></script>
   </body>
 </html>
