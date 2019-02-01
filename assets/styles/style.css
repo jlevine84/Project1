@@ -32,34 +32,40 @@ body{
     border-width: 2px;
 }
 
+button{
+   background-color: rgb(212, 212, 212);
+   border: none;
+}
+
 #input, #output{
     border-style: solid;
     border-color: black;
     border-width: 2px;  
-    background-color: rgb(185, 146, 146);
-    font-weight: bold;
+    background-color:rgb(212, 212, 212);
+    font-family: 'Maven Pro', sans-serif;
+    font-size: 20px;
 }
 
 #bottom-content-header{
     height: 40px;
-    font-family: 'Righteous', cursive;
-    font-size: 20px;
+    font-family: 'Maven Pro', sans-serif;
+    font-size: 25px;
+    font-weight: bold;
     text-align: center;
-    color: rgb(83, 43, 43);
+    color: rgb(114, 68, 68);
     padding-top: 3px;
-    border-style: solid;;
-    border-color: black;
-    border-width: 1px;
+    border-bottom: solid, black, 1px;
+ ]
 }
 
-#bottom-content{
-border-style: solid;;
+#log, #favorites{
+/* border-style: solid;;
 border-color: black;
-border-width: 1px;
+border-width: 1px; */
 }
 
 #bottom-content{
-    height: 300px;
+   
 }
 
 /* #translations{
@@ -114,4 +120,4 @@ border-width: 1px;
   .dropdown:hover .dropdown-content {display: block;}
   
   /* Change the background color of the dropdown button when the dropdown content is shown */
-  .dropdown:hover .dropbtn {background-color: rgb(107, 107, 196);}
+  .dropdown:hover .dropbtn {background-color: rgb(114, 68, 68)}
