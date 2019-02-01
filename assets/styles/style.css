@@ -19,8 +19,16 @@ body{
     padding-top: 0px;
 }
 
+#logo-img{
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
 #logo {
     line-height: 90px;
+    border-style: solid;
+    border-color: red;
+    border-width: 1px;
 }
 
 #login {
@@ -70,7 +78,7 @@ border-width: 1px; */
 }
 
 #bottom-content{
-   
+  border-top: solid, black, 1px; 
 }
 
 /* #translations{
