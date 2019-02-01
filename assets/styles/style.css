@@ -1,3 +1,4 @@
+
 /* div{
     border-style: solid;
     border-color: red;
@@ -9,6 +10,7 @@ body{
 }
 
 #header-row{
+
     margin-top: 5%;
     height: 100px;
     text-align: center;    
@@ -20,10 +22,12 @@ body{
 }
 
 #logo {
+    border: solid 1px red;
     line-height: 90px;
 }
 
 #login {
+
     padding-top: 30px;
 }
 
@@ -126,3 +130,28 @@ border-width: 1px; */
   
   /* Change the background color of the dropdown button when the dropdown content is shown */
   .dropdown:hover .dropbtn {background-color: rgb(114, 68, 68)}
+
+#text-left {
+    height: 200px;
+    border: solid 1px black;
+}
+
+#widget {
+    height: 200px;
+    border: solid 1px black;
+}
+
+#text-right {
+    height: 200px;
+    border: solid 1px black;
+}
+
+#user-data {
+    height: 500px;
+    overflow: auto;
+}
+
+#translations, #user-info {
+    margin-top: 20px;
+    border: solid 1px blue;
+}
