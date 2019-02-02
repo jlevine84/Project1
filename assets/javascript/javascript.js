@@ -81,6 +81,7 @@ $(document).ready(function() {
     $("#submit").on("click",function() {
         var subject =$("#subject").val();
         // var date = getValue($("input[name='time']"));
+        date = "";
         var source = "";
         var sortBy = getValue($("input[name='sortBy'"));
         
