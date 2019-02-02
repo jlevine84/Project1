@@ -34,22 +34,22 @@
 <!-- Container to hold header row with graphic logo and login -->
 <div class = "container">
     <div class = "row" id="header-row">
-      <div id="title" class = "col-md-4">Walkie Talkie Text Translator</div>             
-      <div id="blank" class = "col-md-3"></div>
+      <div id="title" class = "col-md-6">Walkie Talkie Text Translator</div>             
+      <div id="blank" class = "col-md-1"></div>
       <div id="login" class = "col-md-5"></div>
 </div>
 
 <!-- Row to hold logo image -->
 <div class = "row" id="logo-row">
     <div id="logo" class = "col-md-4">
-      <img id="logo-img" src="assets/images/WT.jpg" height="123px" width="170px">          
+      <img id="logo-img" src="assets/images/WT.jpg" height="140px" width="210px">          
     </div> 
     <div id="login" class = "col-md-8"></div></div>
      
 <!-- Language Selection and Search Parameters -->
 <div class = "row" id="input-row">
     <div id="language" class = "col-md-4">
-      Select Your Language <br><br>
+     <h5>Select Your Language</h5> <br>
       <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Select
@@ -155,7 +155,7 @@
     </div>
     <div id="parameters" class = "col-md-8">
         <form>
-            <div class="form-group">
+            <div class="form-group"><h5>Select Your Parameters</h5><br>
               <label for="subject"><b>Subject</b></label>
               <input type="subject" class="form-control" id="subject" >            
             </div>
@@ -181,9 +181,15 @@
       </div>
       </div>
 
-      <!-- Cotainer for Translated Articles -->
+      <!-- Container to hold publication filter options-->
+      <div class="container" id="publications"></div>
+
+      <!-- Container for Translated Articles -->
       <!-- <div class = "container"> -->
         <div class = "container">  
+          <div class = "row">
+              <div id="articles-header" class = "col-md-12">Translated Articles</div> 
+          </div>
           <div class = "row">
               <div id="articles" class = "col-md-12"></div> 
           </div>
