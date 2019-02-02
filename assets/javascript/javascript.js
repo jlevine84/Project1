@@ -1,5 +1,3 @@
-var idCount = 1;
-var slice = "/235146/";
 var yandexKey = "trnsl.1.1.20190130T012434Z.3dd2c347532d5fa2.316531bda0cbd1d627d27d686ed25ff9b2b799d7";
 var translateURL = "https://translate.yandex.net/api/v1.5/tr.json/translate?";
 translateURL = translateURL + "key=" + yandexKey;
@@ -75,4 +73,4 @@ function search(term,limit,startYear,endYear,lang) {
         }
     })
 }
- search1("trump","fr");
+
