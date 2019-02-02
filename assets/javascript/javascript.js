@@ -1,5 +1,7 @@
-var idCount=1;
-var slice = "/12351/"
+$(document).ready(function()){
+
+var idCount = 1;
+var slice = "/235146/";
 var yandexKey = "trnsl.1.1.20190130T012434Z.3dd2c347532d5fa2.316531bda0cbd1d627d27d686ed25ff9b2b799d7";
 var translateURL = "https://translate.yandex.net/api/v1.5/tr.json/translate?";
 translateURL = translateURL + "key=" + yandexKey;
@@ -22,7 +24,7 @@ var articleSection = $("#log");
 articleSection.html("<p>This should show up</p>");
 function search1(term,language) {
     console.log("first language : " + language);
-    search(term,10,2018,2019,language);
+    search(term,10,1930,2019,language);
 }
 function search(term,limit,startYear,endYear,lang) {
     console.log("language = " +lang);
@@ -58,23 +60,22 @@ function search(term,limit,startYear,endYear,lang) {
             var article = $("<div>");
             article.addClass("article");
             var title = $("<h6>").attr("id",idCount);
-            title.addClass("title");
             translate(lang,idCount + slice +data[i].headline.main);
             idCount++;
             var snip = $("<p>").attr("id",idCount);
-            snip.addClass("snippet");
             translate(lang,idCount + slice +data[i].snippet);
             idCount++;
             var url = $("<a>").text("read more").attr("href",data[i].web_url)
-            url.addClass("articleLink");
             var dateString = data[i].pub_date.split("T")[0];
             var date = $("<p>").text(dateString);
-            date.addClass("date");
             article.append(title,snip,date,url);
             articleSection.append(article);
         }
     })
 }
+ search1("trump","fr");
 
-search1("trump","fr");
-
+ $('.dropdown-toggle').on("click", function() {
+    $('.dropdown-toggle').dropdown()
+})
+})
