@@ -22,7 +22,7 @@ var articleSection = $("#log");
 articleSection.html("<p>This should show up</p>");
 function search1(term,language) {
     console.log("first language : " + language);
-    search(term,10,1930,2019,language);
+    search(term,10,2018,2019,language);
 }
 function search(term,limit,startYear,endYear,lang) {
     console.log("language = " +lang);
@@ -58,14 +58,18 @@ function search(term,limit,startYear,endYear,lang) {
             var article = $("<div>");
             article.addClass("article");
             var title = $("<h6>").attr("id",idCount);
+            title.addClass("title");
             translate(lang,idCount + slice +data[i].headline.main);
             idCount++;
             var snip = $("<p>").attr("id",idCount);
+            snip.addClass("snippet");
             translate(lang,idCount + slice +data[i].snippet);
             idCount++;
             var url = $("<a>").text("read more").attr("href",data[i].web_url)
+            url.addClass("articleLink");
             var dateString = data[i].pub_date.split("T")[0];
             var date = $("<p>").text(dateString);
+            date.addClass("date");
             article.append(title,snip,date,url);
             articleSection.append(article);
         }
