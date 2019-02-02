@@ -70,10 +70,23 @@ $(document).ready(function() {
             translateArticles();
         });
     }
+    function getValue(element) {
+        for (var i =0 ; i < element.length ; i++) {
+            if (element[i].checked === true) {
+                return element[i].value;
+            }
+        }
+    }
     search("trump","2019-01-14","","publishedAt");
     $("#submit").on("click",function() {
         var subject =$("#subject").val();
-        var date = $("#");
+        // var date = getValue($("input[name='time']"));
+        date = "";
+        var source = "";
+        var sortBy = getValue($("input[name='sortBy'"));
+        
+        
+        search(subject,date,"",sortBy);
     })
     $('.dropdown-toggle').on("click", function() {
         $('.dropdown-toggle').dropdown()
