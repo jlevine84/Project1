@@ -1,10 +1,15 @@
+
+var idCount=1;
+var slice = "/12351/";
+var articleSection = $("#log");
+var articles = [];
+
 $(document).ready(function()){
 
-var idCount = 1;
-var slice = "/235146/";
 var yandexKey = "trnsl.1.1.20190130T012434Z.3dd2c347532d5fa2.316531bda0cbd1d627d27d686ed25ff9b2b799d7";
 var translateURL = "https://translate.yandex.net/api/v1.5/tr.json/translate?";
 translateURL = translateURL + "key=" + yandexKey;
+var lang = "en";
 // lang = "en" to translate to english
 // text = "text" DONT ACTUALLY NEED QUOTES
 // callback= callbackFunction
@@ -18,6 +23,16 @@ function translate (language, text) {
         $("#"+answer[0]).text(answer[1]);
     })
 }
+
+var newsKey = "&apiKey=bad2768f143a4bd39c2c92889b981643";
+var newsURL = "https://newsapi.org/v2/everything?"
+
+function translateArticles() {
+    console.log("got here");
+    if (articles.length < 1) {
+        articleSection.html("<p>No articles found</p>")
+        return false;
+
 //New York Times API
 var apiKey = "2uLSCfNAfY93MR1jQWuIUkNjuKASxxGD";
 var articleSection = $("#log");
@@ -33,26 +48,49 @@ function search(term,limit,startYear,endYear,lang) {
     if (startYear < endYear) {
         dates= "&begin_date="+startYear+"0101&end_date=" +endYear+"1231";
     }
-    queryURL = queryURL + dates
-    queryURL = queryURL + "&q="+term+"&sort=oldest&api-key=" +apiKey;
-    var loading = $("<img>").attr("src","https://media0.giphy.com/media/sSgvbe1m3n93G/200.gif");
-    loading.addClass("loadingGif");
-    // console.log(queryURL);
-    $("body").append(loading);
-    $.get(queryURL).then(function(response) {
-        loading.remove();
+    limit = 10;
+    for (var i = 0; i < articles.length;i++) {
+        if (i >= limit) {
+            break;
+        }
+        var article = $("<div>");
+        article.addClass("article");
+        var title = $("<h6>").attr("id",idCount);
+        title.addClass("title");
+        translate(lang,idCount + slice + articles[i].title);
+        idCount++;
+        var snip = $("<p>").attr("id",idCount);
+        snip.addClass("snippet");
+        translate(lang,idCount + slice +articles[i].description);
+        idCount++;
+        var url = $("<a>").text("read more").attr("href",articles[i].url)
+        url.addClass("articleLink");
+        var dateString = articles[i].publishedAt.split("T")[0];
+        var date = $("<p>").text(dateString);
+        date.addClass("date");
+         var favorite = $("<i>");
+        favorite.attr("id",i);
+        favorite.addClass("far fa-heart")
+        article.append(favorite,title,snip,date,url);
+        articleSection.append(article);
+    }
+}
+function search(term,startDate,sources,sortBy) {
+    var URL = newsURL + "q=" + term + "&from=" + startDate + "&sources=" + sources +"&sortBy=" + sortBy;
+    URL = URL + newsKey;
+    $.get(URL).then(function(response) {
         console.log(response);
-        // console.log(response.response.docs[0].source);
-        if (response.status !== "OK") {
+        if (response.status !== "ok") {
             return false;
         }
-        articleSection.html("");
-        var data = response.response.docs;
-        console.log(data.length);
-        if (data.length < 1) {
-            articleSection.html("<p>No articles found</p>")
-            return false;
-        }
+        articles = response.articles;
+        translateArticles();
+    });
+}
+search("trump","2019-01-14","","publishedAt")
+
+
+
         for (var i = 0; i < data.length;i++) {
             if (i >= limit) {
                 break;
