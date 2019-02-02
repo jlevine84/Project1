@@ -17,7 +17,8 @@
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Google Fonts Link -->
     <link href="https://fonts.googleapis.com/css?family=Maven+Pro" rel="stylesheet">
-
+    <!-- Link to Moment.js should go here -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 
     <!--Scripts-->
     <!--Firebase-->
@@ -34,9 +35,53 @@
 <!-- Container to hold header row with graphic logo and login -->
 <div class = "container">
     <div class = "row" id="header-row">
-      <div id="title" class = "col-md-6">Walkie Talkie Text Translator</div>             
-      <div id="blank" class = "col-md-1"></div>
-      <div id="login" class = "col-md-5"></div>
+
+      <div id="title" class = "col-md-4">Walkie Talkie Text Translator</div>             
+      <div id="blank" class = "col-md-3"></div>
+      <div id="login" class = "col-md-5">
+        <div class="dropdown" id="login">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              Sign-In Option
+            </a>
+          
+            <div class="dropdown-menu">
+              <form class="px-4 py-3" id="sign-in">
+                <div class="form-group">
+                  <label for="exampleDropdownFormEmail1">Email address</label>
+                  <input type="email" class="form-control" id="EMSIN" placeholder="email@example.com">
+                </div>
+                <div class="form-group">
+                  <label for="exampleDropdownFormPassword1">Password</label>
+                  <input type="password" class="form-control" id="PWSIN" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-primary">Sign in</button>
+              </form>
+              <div class="dropdown-divider"></div>
+              <div id="firebaseui-auth-container"></div>
+              <div class="dropdown-divider"></div>
+              <a class="px-4 py-3" class="dropdown-item" href="#">Forgot password?</a>
+              <div class="dropdown-divider"></div>
+              
+              <form class="px-4 py-3" id="sign-up">
+                    <p>Don't have a login? Sign Up!</p>
+                <div class="form-group">
+                  <label for="exampleDropdownFormEmail1">Email address</label>
+                  <input type="email" class="form-control" id="EMSUP" placeholder="email@example.com">
+                </div>
+                <div class="form-group">
+                  <label for="exampleDropdownFormPassword1">Password</label>
+                  <input type="password" class="form-control" id="PWSUP" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-secondary">Sign Up</button>
+              </form>
+            </div>
+        </div>        
+        <div id="logout">
+            <button type="submit" id="signout" class="btn btn-danger">Logout</button>
+        </div>
+        <div class="container" id="doodad"></div>
+      </div>
 </div>
 
 <!-- Row to hold logo image -->
@@ -203,6 +248,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src = "assets/javascript/javascript.js"></script>
+    <script src = "assets/javascript/firebase.js"></script>
     
   </body>
 </html> 

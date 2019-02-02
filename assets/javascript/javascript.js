@@ -6,7 +6,7 @@ $(document).ready(function() {
     var yandexKey = "trnsl.1.1.20190130T012434Z.3dd2c347532d5fa2.316531bda0cbd1d627d27d686ed25ff9b2b799d7";
     var translateURL = "https://translate.yandex.net/api/v1.5/tr.json/translate?";
     translateURL = translateURL + "key=" + yandexKey;
-    var lang = "fr";
+    var lang = "en";
     // lang = "en" to translate to english
     // text = "text" DONT ACTUALLY NEED QUOTES
     // callback= callbackFunction
@@ -77,14 +77,23 @@ $(document).ready(function() {
             }
         }
     }
-    search("trump","2019-01-14","","publishedAt");
     $("#submit").on("click",function() {
         var subject =$("#subject").val();
-        // var date = getValue($("input[name='time']"));
-        date = "";
+        var dateSelect = getValue($("input[name='time']"));
+        var date = "";
+        switch (dateSelect) {
+            case "day" :
+                date = moment().startOf('day').format("YYYY-MM-DD");
+                break;
+            case "week" :
+                date = moment().startOf('week').format("YYYY-MM-DD");
+                break;
+            case "month" :
+                date = "";
+        }
+        console.log(date);
         var source = "";
         var sortBy = getValue($("input[name='sortBy'"));
-        
         
         search(subject,date,"",sortBy);
     })
