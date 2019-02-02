@@ -8,9 +8,42 @@ body{
     background-color:  white;
 }
 
+.article {
+    margin: 10px;
+    border: 1px solid #dcdcdc;
+    border-right-width: 20px;
+    border-radius: 10px;
+    padding: 20px;
+    width: 1050px;
+}
+
+.border {
+    margin-right: 20px;
+    margin: 10px;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    padding: 20px;
+    width: 100%;
+}
+
+/* This is for the articles inside the .border */
+
+.title {
+    text-decoration: underline;
+}
+
+.snippet {
+    font-style: italic;
+    text-align: left;
+}             
+
+.articleLink {
+    text-decoration: underline;
+}
+
 #header-row{
     margin-top: 5%;
-    height: 70px;
+    height: 70px;                         
     text-align: left; 
     font-family: 'Maven Pro', sans-serif;   
 
