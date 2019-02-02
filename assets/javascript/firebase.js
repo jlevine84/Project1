@@ -18,7 +18,7 @@ var uiConfig = {
         firebase.auth.GithubAuthProvider.PROVIDER_ID,
         firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
     ],
-});
+};
 
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
