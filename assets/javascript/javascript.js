@@ -19,6 +19,7 @@ $(document).ready(function() {
             // console.log(answer);
             $("#"+answer[0]).text(answer[1]);
         })
+
     }
     var newsKey = "&apiKey=bad2768f143a4bd39c2c92889b981643";
     var newsURL = "https://newsapi.org/v2/everything?"
@@ -73,8 +74,3 @@ $(document).ready(function() {
         $('.dropdown-toggle').dropdown()
     })
 })
-
-
-
-
-

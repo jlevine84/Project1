@@ -12,84 +12,199 @@
     <!-- CSS Style Sheet -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/styles/style.css">
-    
+
+    <!-- jQuery script links -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src = "assets/javascript/javascript.js"></script>
     <!-- Google Fonts Link -->
     <link href="https://fonts.googleapis.com/css?family=Maven+Pro" rel="stylesheet">
+
+
+    <!--Scripts-->
+    <!--Firebase-->
+    <script src="https://www.gstatic.com/firebasejs/ui/3.5.2/firebase-ui-auth__en.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/3.5.2/firebase-ui-auth.css">
+    <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+
+    
+
   </head>
   <body>
 
-    <!-- Container to hold header row with graphic logo and login -->
-    <div class = "container">
+<!-- Container to hold header row with graphic logo and login -->
+<div class = "container">
     <div class = "row" id="header-row">
-      <div id="logo" class = "col-md-4">Walkie Talkie Text Translator</div>
-        
+      <div id="title" class = "col-md-4">Walkie Talkie Text Translator</div>             
       <div id="blank" class = "col-md-3"></div>
-      <div id="login" class = "col-md-5">  
-          <div class="login-container">
-              <form action="/action_page.php">
-                 <input type="text" placeholder="Username" name="username" id="username">
-                 <input type="text" placeholder="Password" name="psw" id="pswd">
-                 <button type="submit" class="btn btn-danger">Login</button>
-             </form>
+      <div id="login" class = "col-md-5"></div>
+</div>
+
+<!-- Row to hold logo image -->
+<div class = "row" id="logo-row">
+    <div id="logo" class = "col-md-4">
+      <img id="logo-img" src="assets/images/WT.jpg" height="123px" width="170px">          
+    </div> 
+    <div id="login" class = "col-md-8"></div></div>
+     
+<!-- Language Selection and Search Parameters -->
+<div class = "row" id="input-row">
+    <div id="language" class = "col-md-4">
+      Select Your Language <br><br>
+      <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Select
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" value="az" id="Azerbaijan">Azerbaijan</a>
+              <a class="dropdown-item" value="sq" id="Albanian">Albanian</a>
+              <a class="dropdown-item" value="am" id="Amharic">Amharic</a>
+              <a class="dropdown-item" value="en" id="English">English</a>
+              <a class="dropdown-item" value="ar" id="Arabic">Arabic</a>
+              <a class="dropdown-item" value="hy" id="Armenian">Armenian</a>
+              <a class="dropdown-item" value="af" id="Afrikaans">Afrikaans</a>
+              <a class="dropdown-item" value="eu" id="Basque">Basque</a>
+              <a class="dropdown-item" value="ba" id="Bashkir">Bashkir</a>
+              <a class="dropdown-item" value="be" id="Belarusian">Belarusian</a>
+              <a class="dropdown-item" value="bn" id="Bengali">Bengali</a>
+              <a class="dropdown-item" value="my" id="Burmese">Burmese</a>
+              <a class="dropdown-item" value="bg" id="Bulgarian">Bulgarian</a>
+              <a class="dropdown-item" value="bs" id="Bosnian">Bosnian</a>
+              <a class="dropdown-item" value="cy" id="Welsh">Welsh</a>
+              <a class="dropdown-item" value="hu" id="Hungarian">Hungarian</a>
+              <a class="dropdown-item" value="vi" id="Vietnamese">Vietnamese</a>
+              <a class="dropdown-item" value="ht" id="Haitian (Creole)">Haitian (Creole)</a>
+              <a class="dropdown-item" value="gl" id="Galician">Galician</a>
+              <a class="dropdown-item" value="nl" id="Dutch">Dutch</a>
+              <a class="dropdown-item" value="mrj" id="Hill Mari">Hill Mari</a>
+              <a class="dropdown-item" value="el" id="Greek">Greek</a>
+              <a class="dropdown-item" value="ka" id="Georgian">Georgian</a>
+              <a class="dropdown-item" value="gu" id="Gujarati">Gujarati</a>
+              <a class="dropdown-item" value="da" id="Danish">Danish</a>
+              <a class="dropdown-item" value="he" id="Hebrew">Hebrew</a>
+              <a class="dropdown-item" value="yi" id="Yiddish">Yiddish</a>
+              <a class="dropdown-item" value="id" id="Indonesian">Indonesian</a>
+              <a class="dropdown-item" value="ga" id="Irish">Irish</a>
+              <a class="dropdown-item" value="it" id="Italian">Italian</a>
+              <a class="dropdown-item" value="is" id="Icelandic">Icelandic</a>
+              <a class="dropdown-item" value="es" id="Spanish">Spanish</a>
+              <a class="dropdown-item" value="kk" id="Kazakh">Kazakh</a>
+              <a class="dropdown-item" value="kn" id="Kannada">Kannada</a>
+              <a class="dropdown-item" value="ca" id="Catalan">Catalan</a>
+              <a class="dropdown-item" value="ky" id="Kyrgyz">Kyrgyz</a>
+              <a class="dropdown-item" value="zh" id="Chinese">Chinese</a>
+              <a class="dropdown-item" value="ko" id="Korean">Korean</a>
+              <a class="dropdown-item" value="xh" id="Xhosa">Xhosa</a>
+              <a class="dropdown-item" value="km" id="Khmer">Khmer</a>
+              <a class="dropdown-item" value="lo" id="Laotian">Laotian</a>
+              <a class="dropdown-item" value="la" id="Latin">Latin</a>
+              <a class="dropdown-item" value="lv" id="Latvian">Latvian</a>
+              <a class="dropdown-item" value="lt" id="Lithuanian">Lithuanian</a>
+              <a class="dropdown-item" value="lb" id="Luxembourgish">Luxembourgish</a>
+              <a class="dropdown-item" value="mg" id="Malagasy">Malagasy</a>
+              <a class="dropdown-item" value="ms" id="Malay">Malay</a>
+              <a class="dropdown-item" value="ml" id="Malayalam">Malayalam</a>
+              <a class="dropdown-item" value="mt" id="Maltese">Maltese</a>
+              <a class="dropdown-item" value="mk" id="Macedonian">Macedonian</a>
+              <a class="dropdown-item" value="mi" id="Maori">Maori</a>
+              <a class="dropdown-item" value="mr" id="Marathi">Marathi</a>
+              <a class="dropdown-item" value="mhr" id="Mari">Mari</a>
+              <a class="dropdown-item" value="mn" id="Mongolian">Mongolian</a>
+              <a class="dropdown-item" value="de" id="German">German</a>
+              <a class="dropdown-item" value="ne" id="Nepali">Nepali</a>
+              <a class="dropdown-item" value="no" id="Norwegian">Norwegian</a>
+              <a class="dropdown-item" value="pa" id="Punjabi">Punjabi</a>
+              <a class="dropdown-item" value="pap" id="Papiamento">Papiamento</a>
+              <a class="dropdown-item" value="fa" id="Persian">Persian</a>
+              <a class="dropdown-item" value="pl" id="Polish">Polish</a>
+              <a class="dropdown-item" value="pt" id="Portuguese">Portuguese</a>
+              <a class="dropdown-item" value="ro" id="Romanian">Romanian</a>
+              <a class="dropdown-item" value="ru" id="Russian">Russian</a>
+              <a class="dropdown-item" value="ceb" id="Cebuano">Cebuano</a>
+              <a class="dropdown-item" value="sr" id="Serbian">Serbian</a>
+              <a class="dropdown-item" value="si" id="Sinhala">Sinhala</a>
+              <a class="dropdown-item" value="sk" id="Slovakian">Slovakian</a>
+              <a class="dropdown-item" value="sl" id="Slovenian">Slovenian</a>
+              <a class="dropdown-item" value="sw" id="Swahili">Swahili</a>
+              <a class="dropdown-item" value="su" id="Sundanese">Sundanese</a>
+              <a class="dropdown-item" value="tg" id="Tajik">Tajik</a>
+              <a class="dropdown-item" value="th" id="Thai">Thai</a>
+              <a class="dropdown-item" value="tl" id="Tagalog">Tagalog</a>
+              <a class="dropdown-item" value="ta" id="Tamil">Tamil</a>
+              <a class="dropdown-item" value="tt" id="Tatar">Tatar</a>
+              <a class="dropdown-item" value="te" id="Telugu">Telugu</a>
+              <a class="dropdown-item" value="tr" id="Turkish">Turkish</a>
+              <a class="dropdown-item" value="udm" id="Udmurt">Udmurt</a>
+              <a class="dropdown-item" value="uz" id="Uzbek">Uzbek</a>
+              <a class="dropdown-item" value="uk" id="Ukrainian">Ukrainian</a>
+              <a class="dropdown-item" value="ur" id="Urdu">Urdu</a>
+              <a class="dropdown-item" value="fi" id="Finnish">Finnish</a>
+              <a class="dropdown-item" value="fr" id="French">French</a>
+              <a class="dropdown-item" value="hi" id="Hindi">Hindi</a>
+              <a class="dropdown-item" value="hr" id="Croatian">Croatian</a>
+              <a class="dropdown-item" value="cs" id="Czech">Czech</a>
+              <a class="dropdown-item" value="sv" id="Swedish">Swedish</a>
+              <a class="dropdown-item" value="gd" id="Scottish">Scottish</a>
+              <a class="dropdown-item" value="et" id="Estonian">Estonian</a>
+              <a class="dropdown-item" value="eo" id="Esperanto">Esperanto</a>
+              <a class="dropdown-item" value="jv" id="Javanese">Javanese</a>
+              <a class="dropdown-item" value="ja" id="Japanese">Japanese</a>
+             
+          </div>
+        </div>
+
+    </div>
+    <div id="parameters" class = "col-md-8">
+        <form>
+            <div class="form-group">
+              <label for="subject"><b>Subject</b></label>
+              <input type="subject" class="form-control" id="subject" >            
+            </div>
+            <div class="form-group">
+                <form>
+                    <label for="range"><b>Articles in the last: </b></label><br>
+                    <input type="radio" name="day" value="day" checked> Day
+                    <input type="radio" name="week" value="week"> Week
+                    <input type="radio" name="month" value="month"> Month
+                  </form>
+            </div>       
+            <div class="form-group">
+                <form>
+                    <label for="range"><b>Return Results By: </b></label><br>
+                    <input type="radio" name="relevancy" checked>Relevancy
+                    <input type="radio" name="popularity">Popularity
+                    <input type="radio" name="newest"> Newest First
+                  </form>
+            </div>               
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
         </div>
       </div>
-    </div>  
-    
-    <!-- Row to hold logo image -->
-    <div class = "row" id="logo-row">
-        <div id="logo" class = "col-md-4">
-          <img id="logo-img" src="assets/images/WT.jpg" height="123px" width="170px">          
-        </div> 
-        <div id="login" class = "col-md-8"></div></div>
-    </div>
+      </div>
 
-    <br><br>
-
-    <!---Container to hold input and output boxes -->
-    <div class = "container">
-        <div class = "row" id="translations">
-          <div id="input" class = "col-md-5"><br> Insert Text to Translate Here: <input type="text" id="input-form" ></input>
-            <button id="audio-in"><img src="assets/images/audio_in.png" height="30px" width="38px"></button></div>
-          <div id="selections" class = "col-md-2">
-              <br><br>
-            <div class="dropdown">
-              <button class="dropbtn">Translate From</button>
-              <div class="dropdown-content">
-                <a>English</a>
-                <a>French</a>
-                <a>Spanish</a>
-              </div>
-            </div> <br><br><br><br><br>
-            <div class="dropdown">
-                <button class="dropbtn">Translate To</button>
-                <div class="dropdown-content">
-                  <a>English</a>
-                  <a>French</a>
-                  <a>Spanish</a>
-                </div>
-              </div></div>
-          <div id="output" class = "col-md-5"><br>Translated Text Here: <input type="text" id="input-form" ></input>
-            <button id="favorite-btn"> <img src="assets/images/favorite_heart.png" height="25px" width="25px"></button> 
-            <button id="audio-out"><img src="assets/images/audio_out.jpg" height="25px" width="25px"></button></div>          
-          </div></div>
-          <br><br>
-
+      <!-- Cotainer for Translated Articles -->
+      <!-- <div class = "container"> -->
           <div class = "container">
-              <div class = "row" id="bottom-content-header">
-                  <div id="log-header" class = "col-md-7">Translation Log</div>
-                  <div id="favorites-header" class = "col-md-5">Favorited Phrases</div>                      
-              </div>
-              <div class = "row" id="bottom-content">
-                <div id="log" class = "col-md-7"></div>
-                <div id="favorites" class = "col-md-5"></div>                        
-              </div>
-          </div>      
+              <div class = "row">
+                  <div id="article-header-row" class = "col-md-12">Translated Articles</div> 
               
+          </div>
+          <div class = "row">
+              <div id="articles" class = "col-md-12"></div> 
+        </div>
+        </div>
+                 
+      <!-- </div> -->
 
 
-          <!-- jQuery script links -->
+
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src = "assets/javascript/javascript.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
   </body>
-</html>
+</html> 
