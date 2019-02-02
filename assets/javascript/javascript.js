@@ -1,12 +1,12 @@
 $(document).ready(function() {
     var idCount=1;
     var slice = "/12351/";
-    var articleSection = $("#log");
+    var articleSection = $("#articles");
     var articles = [];
     var yandexKey = "trnsl.1.1.20190130T012434Z.3dd2c347532d5fa2.316531bda0cbd1d627d27d686ed25ff9b2b799d7";
     var translateURL = "https://translate.yandex.net/api/v1.5/tr.json/translate?";
     translateURL = translateURL + "key=" + yandexKey;
-    var lang = "en";
+    var lang = "fr";
     // lang = "en" to translate to english
     // text = "text" DONT ACTUALLY NEED QUOTES
     // callback= callbackFunction
@@ -31,6 +31,7 @@ $(document).ready(function() {
             return false;
         }
         limit = 10;
+        articleSection.html("");
         for (var i = 0; i < articles.length;i++) {
             if (i >= limit) {
                 break;
@@ -70,7 +71,17 @@ $(document).ready(function() {
         });
     }
     search("trump","2019-01-14","","publishedAt");
+    $("#submit").on("click",function() {
+        var subject =$("#subject").val();
+        var date = $("#");
+    })
     $('.dropdown-toggle').on("click", function() {
         $('.dropdown-toggle').dropdown()
+    })
+    $(".dropdown-item").on("click",function() {
+        console.log("got to dropdown");
+        lang = $(this).attr("value");
+        // console.log(lang);
+        translateArticles();
     })
 })
