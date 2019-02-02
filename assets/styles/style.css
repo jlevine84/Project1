@@ -1,9 +1,9 @@
-
+/* 
 div, img{
     border-style: solid;
     border-color: red;
     border-width: 1px;
-}
+} */
 
 body{
     background-color:  white;
@@ -44,13 +44,18 @@ body{
 
 #header-row{
     margin-top: 5%;
-    height: 70px;                         
+    height: auto;                         
     text-align: left; 
     font-family: 'Maven Pro', sans-serif;   
+    font-size: 35px;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color:or: rgb(4, 4, 92);
 }
 
 #logo-row{
     height: auto;
+    margin-top: 20px;
 }
 
 
@@ -61,10 +66,21 @@ body{
     padding-left: 0px;
 }
 
+#input-row{
+    margin-top: 20px;   
+}
+
+#parameters, #language {
+    font-family: 'Maven Pro', sans-serif;
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(163, 163, 163); 
+    padding: 20px;
+}
 
 #logo {
-    border: solid 1px red;
-    font-size: 25px;
+    /* border: solid 1px red;
+    font-size: 25px; */
 }
 
 /* -------MODAL FORMATTING-------- */
@@ -107,14 +123,27 @@ body{
   }
 /* --------------------------------------- */
 
-#article-header-row{
+#articles-header{
 margin-top: 20px;
 font-size: 25px;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: rgb(4, 4, 92);
+}
+
+#publications{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: auto;
+}
+
+#articles-header{
+    font-size: 25px;
 }
 
 #articles{
     margin-top: 5px;
-    height: 900px;
+    height: auto;
     width: 100%;
 }
 
