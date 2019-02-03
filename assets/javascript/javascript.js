@@ -106,4 +106,11 @@ $(document).ready(function() {
         // console.log(lang);
         translateArticles();
     })
+
+    //Toggle favorites modal to show
+    $("#btn-favorites").on("click", function() {
+
+        $("#modal-favorites").modal("toggle")
+        //user's favorites content goes in this element
+    });
 })
