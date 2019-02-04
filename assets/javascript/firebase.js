@@ -1,3 +1,6 @@
+//These variables must be here in order to access them in other javascript file
+var favs = [];
+var database;
 $(document).ready(function() { 
     //Firebase configuration
     var config = {
@@ -9,7 +12,8 @@ $(document).ready(function() {
         messagingSenderId: "965406599748"
     };
     firebase.initializeApp(config);
-
+    database = firebase.database();
+    
     // FirebaseUI config.
     var uiConfig = {
         signInSuccessUrl: 'https://jlevine84.github.io/Project1/',
@@ -35,7 +39,16 @@ $(document).ready(function() {
             var user = firebase.auth().currentUser;
             $("#doodad").text("You are logged in!")
             //Client's data goes here.
-            
+
+            //Set action listener once client is logged in
+            database.ref("/" +user.uid).on("value",function(snapshot) {
+                try {
+                    favs = snapshot.val().favorites;
+                } catch (error) {
+                    console.log("no favorites");
+                    favs = [];
+                }
+            });
         } else {
             // No user is signed in.
             $("#btn-favorites").hide();

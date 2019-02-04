@@ -23,8 +23,7 @@ $(document).ready(function() {
     }
     var newsKey = "&apiKey=bad2768f143a4bd39c2c92889b981643";
     var newsURL = "https://newsapi.org/v2/everything?"
-
-    function translateArticles() {
+    function translateAny(articles,articleSection) {
         console.log("got here");
         if (articles.length < 1) {
             articleSection.html("<p>No articles found</p>")
@@ -54,9 +53,15 @@ $(document).ready(function() {
             var favorite = $("<i>");
             favorite.attr("id",i);
             favorite.addClass("far fa-heart")
+            //check through favorites and find out if this is one of them; then add class loved/unloved
+            favorite.addClass("unloved");
             article.append(favorite,title,snip,date,url);
             articleSection.append(article);
         }
+    }
+    function translateArticles() {
+        translateAny(articles,articleSection);
+        translateAny(favs,$("#fav-articles"));
     }
     function search(term,startDate,sources,sortBy) {
         var URL = newsURL + "q=" + term + "&from=" + startDate + "&sources=" + sources +"&sortBy=" + sortBy;
@@ -77,7 +82,27 @@ $(document).ready(function() {
             }
         }
     }
-    $("#submit").on("click",function() {
+    $(document).on("click",".unloved",function() {
+        $(this).attr("class","fa-heart fas loved"); //change to solid heart
+        favs.push(articles[$(this).attr("id")]);
+        database.ref("/" +firebase.auth().currentUser.uid).set({
+            favorites : favs
+        });
+    });
+    $(document).on("click",".loved",function () {
+        $(this).attr("class","fa-heart far unloved");
+        var unlike = articles[$(this).attr("id")];
+        for (var i =0 ; i < favs.length; i++) {
+            if (unlike.url === favs[i].url) {
+                favs.splice(i,1);
+                break;
+            }
+        }
+        database.ref("/" +firebase.auth().currentUser.uid).set({
+            favorites : favs
+        });
+    })
+    $("#submit").on("click",function(e) {
         var subject =$("#subject").val();
         var dateSelect = getValue($("input[name='time']"));
         var date = "";
