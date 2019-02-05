@@ -52,7 +52,8 @@ $(document).ready(function() {
             //Set action listener once client is logged in
             database.ref("/" +user.uid).on("value",function(snapshot) {
                 try {
-                    favs = snapshot.val().favorites;
+                    favs = snapshot.val().favorites.favorites;
+                    lang = snapshot.val().language.lang;
                     translateArticles();
                 } catch (error) {
                     console.log("no favorites");
@@ -190,7 +191,7 @@ $(document).ready(function() {
     $(document).on("click",".unloved",function() {
         $(this).attr("class","fa-heart fas loved"); //change to solid heart
         favs.push(articles[$(this).attr("id")]);
-        database.ref("/" +firebase.auth().currentUser.uid).set({
+        database.ref("/" +firebase.auth().currentUser.uid +"/favorites").set({
             favorites : favs
         });
         translateAny(favs,favSection);
@@ -209,7 +210,7 @@ $(document).ready(function() {
         if (unlike > -1) {
             favs.splice(unlike,1);
         }
-        database.ref("/" +firebase.auth().currentUser.uid).set({
+        database.ref("/" +firebase.auth().currentUser.uid + "/favorites").set({
             favorites : favs
         });
         translateAny(favs,favSection);
@@ -247,6 +248,9 @@ $(document).ready(function() {
     $(".dropdown-item").on("click",function() {
         console.log("got to dropdown");
         lang = $(this).attr("value");
+        database.ref("/" +firebase.auth().currentUser.uid + "/language").set({
+            language : lang
+        });
         // console.log(lang);
         translateArticles();
     })
