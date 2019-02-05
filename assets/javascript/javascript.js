@@ -2,6 +2,7 @@ $(document).ready(function() {
     var idCount=1;
     var slice = "/12351/";
     var articleSection = $("#articles");
+    var favSection = $("#fav-articles")
     var articles = [];
     var yandexKey = "trnsl.1.1.20190130T012434Z.3dd2c347532d5fa2.316531bda0cbd1d627d27d686ed25ff9b2b799d7";
     var translateURL = "https://translate.yandex.net/api/v1.5/tr.json/translate?";
@@ -45,23 +46,34 @@ $(document).ready(function() {
             snip.addClass("snippet");
             translate(lang,idCount + slice +articles[i].description);
             idCount++;
-            var url = $("<a>").text("read more").attr("href",articles[i].url)
+            var urlData = articles[i].url;
+            var url = $("<a>").text("read more").attr("href",urlData)
             url.addClass("articleLink");
             var dateString = articles[i].publishedAt.split("T")[0];
             var date = $("<p>").text(dateString);
             date.addClass("date");
-            var favorite = $("<i>");
-            favorite.attr("id",i);
-            favorite.addClass("far fa-heart")
-            //check through favorites and find out if this is one of them; then add class loved/unloved
-            favorite.addClass("unloved");
-            article.append(favorite,title,snip,date,url);
+            if (firebase.auth().currentUser) {  //if logged in
+                var favorite = $("<i>");
+                favorite.attr("id",i);
+                favorite.attr("data-url",urlData);
+                favorite.addClass("fa-heart")
+                //check through favorites and find out if this is one of them; then add class loved/unloved
+                var like = checkForFav(urlData);
+                if (like < 0) {
+                    favorite.addClass("far unloved");
+                } else {
+                    favorite.addClass("fas loved");
+                }
+                article.append(favorite);
+            }
+            
+            article.append(title,snip,date,url);
             articleSection.append(article);
         }
     }
     function translateArticles() {
         translateAny(articles,articleSection);
-        translateAny(favs,$("#fav-articles"));
+        translateAny(favs,favSection);
     }
     function search(term,startDate,sources,sortBy) {
         var URL = newsURL + "q=" + term + "&from=" + startDate + "&sources=" + sources +"&sortBy=" + sortBy;
@@ -88,21 +100,35 @@ $(document).ready(function() {
         database.ref("/" +firebase.auth().currentUser.uid).set({
             favorites : favs
         });
+        translateAny(favs,favSection);
     });
+    function checkForFav(url) {
+        for (var i =0 ; i < favs.length; i++) {
+            if (url === favs[i].url) {
+                return i;
+            }
+        }
+        return -1;
+    }
     $(document).on("click",".loved",function () {
         $(this).attr("class","fa-heart far unloved");
-        var unlike = articles[$(this).attr("id")];
-        for (var i =0 ; i < favs.length; i++) {
-            if (unlike.url === favs[i].url) {
-                favs.splice(i,1);
-                break;
-            }
+        var unlike = checkForFav($(this).attr("data-url"));
+        if (unlike > -1) {
+            favs.splice(unlike,1);
         }
         database.ref("/" +firebase.auth().currentUser.uid).set({
             favorites : favs
         });
+        translateAny(favs,favSection);
     })
-    $("#submit").on("click",function(e) {
+    $("#search").submit(function(e) {
+        e.preventDefault();
+        submit();
+    });
+    $("#submit").on("click",function() {
+        submit();
+    })
+    function submit() {
         var subject =$("#subject").val();
         var dateSelect = getValue($("input[name='time']"));
         var date = "";
@@ -121,7 +147,7 @@ $(document).ready(function() {
         var sortBy = getValue($("input[name='sortBy'"));
         
         search(subject,date,"",sortBy);
-    })
+    }
     $('.dropdown-toggle').on("click", function() {
         $('.dropdown-toggle').dropdown()
     })
