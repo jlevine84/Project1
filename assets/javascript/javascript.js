@@ -148,9 +148,9 @@ $(document).ready(function() {
         
         search(subject,date,"",sortBy);
     }
-    $('.dropdown-toggle').on("click", function() {
-        $('.dropdown-toggle').dropdown()
-    })
+    // $('.dropdown-toggle').on("click", function() {
+    //     $('.dropdown-toggle').dropdown()
+    // })
     $(".dropdown-item").on("click",function() {
         console.log("got to dropdown");
         lang = $(this).attr("value");
@@ -158,10 +158,10 @@ $(document).ready(function() {
         translateArticles();
     })
 
-    //Toggle favorites modal to show
-    $("#btn-favorites").on("click", function() {
+    // //Toggle favorites modal to show
+    // $("#btn-favorites").on("click", function() {
 
-        $("#modal-favorites").modal("toggle")
-        //user's favorites content goes in this element
-    });
+    //     $("#modal-favorites").modal("show")
+    //     //user's favorites content goes in this element
+    // });
 })

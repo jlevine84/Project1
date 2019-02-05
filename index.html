@@ -82,7 +82,7 @@
         </div>
         <div class="container" id="doodad"></div>
         <div class="container">      
-          <button type="button" class="btn btn-primary" id="btn-favorites" data-toggle="modal" data-target="#exampleModalCenter">
+          <button type="button" class="btn btn-primary" id="btn-favorites" data-toggle="modal" data-target="#mdl-favorites">
           Show Favorites
           </button>
         </div>
@@ -248,8 +248,8 @@
         </div>
                  
       <!-- Modal -->
-      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal fade" id="mdl-favorites" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
           <div class="modal-content" id="modal-favorites">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalCenterTitle">My Favorites</h5> <!--Modal header-->
@@ -257,9 +257,7 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body"> <!--favorites articles goes to this element-->
-              <div id = "fav-articles">
-            </div>
+            <div class="modal-body" id="fav-articles"> <!--favorites articles goes to this element-->
             <div class="modal-footer"> <!-- Optional - can have remove article from favorites here-->
               My Favorites
             </div>
