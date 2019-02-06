@@ -38,7 +38,7 @@
 
   <div id="logo" class = "col-md-7">
     <img id="logo-img" src="assets/images/WT.jpg" height="140px" width="210px">
-    <br><h6 id="yanex">Powered By Yandex</h6>          
+    <br><h6 id="yandex">Powered By Yandex</h6>          
   </div> 
 
 <div id="login" class = "col-md-3">
@@ -56,14 +56,14 @@
           <div class="dropdown-menu">
             <form class="px-4 py-3" id="sign-in">
               <div class="form-group">
-                <label for="exampleDropdownFormEmail1">Email address</label>
+                <label for="exampleDropdownFormEmail1" id = "email-label">Email address</label>
                 <input type="email" class="form-control" id="EMSIN" placeholder="email@example.com">
               </div>
               <div class="form-group">
-                <label for="exampleDropdownFormPassword1">Password</label>
+                <label for="exampleDropdownFormPassword1" id = "password-label">Password</label>
                 <input type="password" class="form-control" id="PWSIN" placeholder="Password">
               </div>
-              <button type="submit" class="btn btn-primary">Sign in</button>
+              <button type="submit" class="btn btn-primary" id = "sign-in">Sign in</button>
             </form>
                   
             <div class="dropdown-divider"></div>
@@ -73,16 +73,16 @@
             <div class="dropdown-divider"></div>
             
             <form class="px-4 py-3" id="sign-up">
-                  <p>Don't have a login? Sign Up!</p>
+                  <p id = "sign-up-label">Don't have a login? Sign Up!</p>
               <div class="form-group">
-                <label for="exampleDropdownFormEmail1">Email address</label>
+                <label for="exampleDropdownFormEmail1" id = "email-label2">Email address</label>
                 <input type="email" class="form-control" id="EMSUP" placeholder="email@example.com">
               </div>
               <div class="form-group">
-                <label for="exampleDropdownFormPassword1">Password</label>
+                <label for="exampleDropdownFormPassword1" id = "password-label2">Password</label>
                 <input type="password" class="form-control" id="PWSUP" placeholder="Password">
               </div>
-              <button type="submit" class="btn btn-secondary">Sign Up</button>
+              <button type="submit" class="btn btn-secondary" id = "sign-up">Sign Up</button>
             </form>
           </div>
       </div>    
@@ -102,7 +102,7 @@
 <div class = "container">
     <div class = "row" id="header-row">
       <div class = "col-md-3"></div>
-      <div id="title" class = "col-md-6"><h1>Walkie Talkie Text Translator<h1></div>             
+      <div id="title" class = "col-md-6"><h1 id = "walkie-title">Walkie Talkie News Translator<h1></div>             
       <div id="blank" class = "col-md-3">          
         
     </div>
@@ -116,7 +116,7 @@
 <div class = "container">
 <div class = "row" id="input-row">
     <div id="language" class = "col-md-4">
-     <h5>Select Your Language</h5> <br>
+     <h5 id = "select-lang-label">Select Your Language</h5> <br>
       <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Select
@@ -223,24 +223,24 @@
     </div>
     <div id="parameters" class = "col-md-8">
         <form id = "search">
-            <div class="form-group"><h5>Select Your Parameters</h5><br>
-              <label for="subject"><b>Subject</b></label>
+            <div class="form-group"><h5 id = "select-parameters">Select Your Parameters</h5><br>
+              <label for="subject" id = "subject-label"><b>Subject</b></label>
               <input type="subject" class="form-control" id="subject" >            
             </div>
             <div class="form-group">
                 <form>
-                    <label for="range"><b>Articles in the last: </b></label><br>
-                    <input type="radio" name="time" value="day" checked> Day
-                    <input type="radio" name="time" value="week"> Week
-                    <input type="radio" name="time" value="month"> Month
+                    <label for="range" id = "articles-date-label"><b>Articles in the last: </b></label><br>
+                    <input type="radio" name="time" value="day" checked> <span id ="day">Day</span>
+                    <input type="radio" name="time" value="week"> <span id ="week">Week</span>
+                    <input type="radio" name="time" value="month"> <span id ="month">Month</span>
                   </form>
             </div>       
             <div class="form-group">
                 <form>
-                    <label for="range"><b>Return Results By: </b></label><br>
-                    <input type="radio" name="sortBy" value = "relevancy" checked> Relevancy
-                    <input type="radio" name="sortBy" value = "popularity"> Popularity
-                    <input type="radio" name="sortBy" value = "publishedAt"> Newest First
+                    <label for="range" id = "result-label"><b>Return Results By: </b></label><br>
+                    <input type="radio" name="sortBy" value = "relevancy" checked> <span id="relevance">Relevancy</span>
+                    <input type="radio" name="sortBy" value = "popularity"> <span id="popularity">Popularity</span>
+                    <input type="radio" name="sortBy" value = "publishedAt"> <span id="newest-first">Newest First</span>
                   </form>
             </div>               
             <button id="submit" class="btn btn-primary">Submit</button>
@@ -268,7 +268,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
           <div class="modal-content" id="modal-favorites">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalCenterTitle">My Favorites</h5> <!--Modal header-->
+              <h5 class="modal-title" id="favorites-title">My Favorites</h5> <!--Modal header-->
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -276,7 +276,7 @@
             <div class="container-fluid">
               <div class="modal-body" id="fav-articles"> <!--favorites articles goes to this element-->
             </div>
-            <div class="modal-footer"> <!-- Optional - can have remove article from favorites here-->
+            <div class="modal-footer" id ="fav-footer"> <!-- Optional - can have remove article from favorites here-->
               My Favorites
             </div>
           </div>
