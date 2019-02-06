@@ -152,4 +152,7 @@ border-bottom-color: rgb(4, 4, 92);
 
 }
 
+.modal-backdrop {
+    z-index: -1;
+}
 
