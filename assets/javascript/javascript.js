@@ -1,3 +1,4 @@
+var pageLang = "en"; //language all the buttons, etc. are displayed in
 $(document).ready(function() {
     var favs = [];
     var database;
@@ -10,6 +11,7 @@ $(document).ready(function() {
     var translateURL = "https://translate.yandex.net/api/v1.5/tr.json/translate?";
     translateURL = translateURL + "key=" + yandexKey;
     var lang = "en";
+    var pageLang = "en";
     //FIREBASE JAVASCRIPT
     //Firebase configuration
     var config = {
@@ -52,8 +54,20 @@ $(document).ready(function() {
             //Set action listener once client is logged in
             database.ref("/" +user.uid).on("value",function(snapshot) {
                 try {
+                    //get user favorites and language preferences
+                    lang = snapshot.val().language.language;
+                    pageLang = snapshot.val().language.pageLanguage;
+                } catch (error) {
+                    //no set language
+                    lang = "en";
+                    pageLang = "en";
+                    database.ref("/" +firebase.auth().currentUser.uid + "/language").set( {
+                        language : lang,
+                        pageLanguage : pageLang
+                    })
+                }
+                try {
                     favs = snapshot.val().favorites.favorites;
-                    lang = snapshot.val().language.lang;
                     translateArticles();
                 } catch (error) {
                     console.log("no favorites");
@@ -248,19 +262,15 @@ $(document).ready(function() {
     $(".dropdown-item").on("click",function() {
         console.log("got to dropdown");
         lang = $(this).attr("value");
+        console.log(window.pageLang);
         database.ref("/" +firebase.auth().currentUser.uid + "/language").set({
-            language : lang
+            language : lang,
+            pageLanguage : window.pageLang
         });
         // console.log(lang);
         translateArticles();
     })
+    function translatePage() {
 
-
-    //Toggle favorites modal to show
-    // $("#btn-favorites").on("click", function() {
-
-    //     $("#modal-favorites").modal("toggle")
-
-    //     //user's favorites content goes in this element
-    // });
+    }
 })
