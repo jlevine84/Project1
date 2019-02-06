@@ -175,7 +175,7 @@ border-bottom-color: rgb(4, 4, 92);
     z-index: -1;
 }
 
-#modal-favorites {
+#modal-favorites, #modal-article {
     width: 1200px;
     position: relative;
     right: 200px;
