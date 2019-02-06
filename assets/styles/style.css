@@ -5,8 +5,18 @@ div, img{
     border-width: 1px;
 } */
 
+#title{
+    font-family: 'Raleway', sans-serif;
+}
+
 body{
     background-color:  white;
+}
+
+#doodad{
+    color: green;
+    font-weight: bold;
+    font-size: 15px;
 }
 
 .article {
@@ -31,6 +41,7 @@ body{
 
 .title {
     text-decoration: underline;
+    
 }
 
 .snippet {
@@ -43,7 +54,7 @@ body{
 }
 
 #header-row{
-    margin-top: 5%;
+    margin-top: 2%;
     height: auto;                         
     text-align: left; 
     font-family: 'Maven Pro', sans-serif;   
@@ -55,7 +66,7 @@ body{
 
 #logo-row{
     height: auto;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 
@@ -78,11 +89,13 @@ body{
     padding: 20px;
 }
 
-#logo {
-    /* border: solid 1px red;
-    font-size: 25px; */
+#yanex {
+    padding-left: 40px;
 }
 
+#login{
+    padding-top: 10px;
+}
 /* -------MODAL FORMATTING-------- */
 /* The Modal (background) */
 .modal {
@@ -113,6 +126,12 @@ body{
     float: right;
     font-size: 28px;
     font-weight: bold;
+  }
+
+  #languages{
+    max-height:300px;
+   overflow-x:hidden;
+   overflow-y:auto; 
   }
   
   .close:hover,
