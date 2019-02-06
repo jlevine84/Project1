@@ -182,6 +182,7 @@ $(document).ready(function() {
     function translateArticles() {
         translateAny(articles,articleSection);
         translateAny(favs,favSection);
+        translatePage();
     }
     function search(term,startDate,sources,sortBy) {
         var URL = newsURL + "q=" + term + "&from=" + startDate + "&sources=" + sources +"&sortBy=" + sortBy;
@@ -262,6 +263,7 @@ $(document).ready(function() {
     $(".dropdown-item").on("click",function() {
         console.log("got to dropdown");
         lang = $(this).attr("value");
+        window.pageLang = lang;
         console.log(window.pageLang);
         database.ref("/" +firebase.auth().currentUser.uid + "/language").set({
             language : lang,
@@ -269,8 +271,92 @@ $(document).ready(function() {
         });
         // console.log(lang);
         translateArticles();
+        
     })
+    function getURL(language,text) {
+        return translateURL+ "&lang="+ language +"&text=" +text;
+    }
     function translatePage() {
+        //Translate Every element on the page
+        $.get(getURL(pageLang, "Powered By")).then(function(response) {
+            $("#yandex").text(response.text + " Yandex");
+        });
+        $.get(getURL(pageLang, "Sign-in Option")).then(function(response) {
+            $("#dropdownMenuLink").text(response.text);
+        });
+        $.get(getURL(pageLang, "Email Address")).then(function(response) {
+            $("#email-label").text(response.text);
+            $("#email-label2").text(response.text);
+        });
+        $.get(getURL(pageLang, "password")).then(function(response) {
+            $("#password-label").text(response.text);
+            $("#password-label2").text(response.text);
+        });
+        $.get(getURL(pageLang, "Sign in")).then(function(response) {
+            $("#sign-in").text(response.text);
+        });
+        $.get(getURL(pageLang, "Don't have a login? Sign Up!")).then(function(response) {
+            $("#sign-up-label").text(response.text);
+        });
+        $.get(getURL(pageLang, "Sign Up")).then(function(response) {
+            $("#sign-up").text(response.text);
+        });
+        $.get(getURL(pageLang, "Logout")).then(function(response) {
+            $("#signout").text(response.text);
+        });
+        $.get(getURL(pageLang, "News Translator")).then(function(response) {
+            $("#walkie-title").text("Walkie Talkie " + response.text);
+        });
+        $.get(getURL(pageLang, "Select Your Language")).then(function(response) {
+            $("#select-lang-label").text(response.text);
+        });
+        $.get(getURL(pageLang, "Select")).then(function(response) {
+            $("#dropdownMenuButton").text(response.text);
+        });
+        $.get(getURL(pageLang, "Select Your Parameters")).then(function(response) {
+            $("#select-parameters").text(response.text);
+        });
+        $.get(getURL(pageLang, "Subject")).then(function(response) {
+            $("#subject-label").html("<b>" + response.text + "</b>");
+        });
+        $.get(getURL(pageLang, "Articles in the Last")).then(function(response) {
+            $("#articles-date-label").html("<b>" + response.text + "</b>");
+        });
+        $.get(getURL(pageLang, "Day")).then(function(response) {
+            $("#day").text(response.text);
+        });
+        $.get(getURL(pageLang, "Month")).then(function(response) {
+            $("#month").text(response.text);
+        });
+        $.get(getURL(pageLang, "Week")).then(function(response) {
+            $("#week").text(response.text);
+        });
+        $.get(getURL(pageLang, "Return Results By")).then(function(response) {
+            $("#result-label").html("<b>" + response.text + "</b>");
+        });
+        $.get(getURL(pageLang, "Relevancy")).then(function(response) {
+            $("#relevance").text(response.text);
+        });
+        $.get(getURL(pageLang, "Popularity")).then(function(response) {
+            $("#popularity").text(response.text);
+        });
+        $.get(getURL(pageLang, "Newest First")).then(function(response) {
+            $("#newest-first").text(response.text);
+        });
+        $.get(getURL(pageLang, "Submit")).then(function(response) {
+            $("#submit").text(response.text);
+        });
+        $.get(getURL(pageLang, "Translated Articles")).then(function(response) {
+            $("#articles-header").text(response.text);
+        });
+        $.get(getURL(pageLang, "My Favorites")).then(function(response) {
+            $("#favorites-title").text(response.text);
+            $("#fav-footer").text(response.text);            
+        });
+        $.get(getURL(pageLang, "Submit")).then(function(response) {
+            $("#submit").text(response.text);
+        });
+
 
     }
 })
