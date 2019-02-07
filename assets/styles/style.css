@@ -77,8 +77,13 @@ body{
     padding-left: 0px;
 }
 
-#input-row{
+#input-row {
     margin-top: 20px;   
+}
+
+#walkie-title {
+    width: 600px;
+    display: block;
 }
 
 #parameters {
