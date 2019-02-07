@@ -2,12 +2,12 @@ Team 2
 
 Members:  Kendall Davis, Emma Dedmond, Jeff Levine, & Gabriel Waldron.
 
-Topics/Ideas: Utilize a Text to Speech API in addition to translation APIs in order to proactively translate text for a user.
+Topics/Ideas: Utilize a Translation API in conjunction with a news search API in order to facilitate a more user friendly and helpful news application.
 
 Project Name: Walkie-Talkie
 
-APIs utilized: Text to Speech: IBM; Translation API: Yandex, 
+APIs utilized: News API: New York Times; Translation API: Yandex, 
 
 New Technologies: Firebase Authentication for users’ to save favorite phrases or Google account.
 
-Mission/Reason: Help in language and translation fundamentals! Check your accent and pronunciation!
+Mission/Reason: Help in language and translation fundamentals! Access the news you want, how you want!
