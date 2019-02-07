@@ -46,7 +46,8 @@
           <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
             Sign-In Option
-          </a>
+          </a><br>
+          <div id="doodad">Log</div>
                  
         
           <div class="dropdown-menu">
@@ -87,7 +88,7 @@
         <div id="logout" class = "col-md-2">
             <div id="logout">
                 <button type="submit" id="signout" class="btn btn-danger">Logout</button>      
-                <button type="submit" id="btn-favorites" class="btn btn-primary">Favorites</button>             
+                <button type="submit" id="btn-favorites" class="btn btn-primary" data-toggle="modal" data-target=".toggle">Favorites</button>             
             </div>
         </div>
 
@@ -263,8 +264,8 @@
         </div>
                  
       <!-- Modal -->
-      <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal fade toggle" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered ">
           <div class="modal-content" id="modal-favorites">
             <div class="modal-header">
               <h5 class="modal-title" id="favorites-title">My Favorites</h5> <!--Modal header-->
@@ -284,7 +285,7 @@
 
       <!--View Article Modal-->
       <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-dialog modal-lg modal-dialog-centered toggle">
           <div class="modal-content" id="modal-article">
             <div class="modal-header">
               <h5 class="modal-title" id="article-header"></h5> <!--Modal header-->
