@@ -81,12 +81,11 @@ body{
     margin-top: 20px;   
 }
 
-#parameters, #language {
-    font-family: 'Maven Pro', sans-serif;
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgb(163, 163, 163); 
-    padding: 20px;
+#parameters {
+
+}
+#language {
+
 }
 
 #yanex {
