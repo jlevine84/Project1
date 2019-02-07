@@ -85,15 +85,17 @@ body{
     width: 500px;
     background: #fff;
     border-radius: 10px;
-    overflow: hidden;
     padding: 62px 55px 65px 55px;
+
+    box-shadow: 0 3px 20px 0px rgba(0, 0 , 0, 0.1);
 }
 #language {
     width: 500px;
     background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
+    border-radius: 5px;
     padding: 62px 55px 65px 55px;
+
+    box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
 }
 
 #yanex {
