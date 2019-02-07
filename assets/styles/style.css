@@ -82,10 +82,18 @@ body{
 }
 
 #parameters {
-
+    width: 500px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 62px 55px 65px 55px;
 }
 #language {
-
+    width: 500px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 62px 55px 65px 55px;
 }
 
 #yanex {
