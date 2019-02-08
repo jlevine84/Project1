@@ -181,4 +181,7 @@ border-bottom-color: rgb(4, 4, 92);
 .modal-backdrop {
     z-index: -1;
 }
+/* .full-article-top {
+    z-index : 10;
+} */
 
