@@ -155,7 +155,10 @@ $(document).ready(function() {
             translate(lang,idCount + slice +articles[i].description);
             idCount++;
             var urlData = articles[i].url;
-            var url = $("<a>").text("read more").attr("href",urlData)
+            translate(lang,idCount+slice+"Read More");
+            var url = $("<a>").attr("href",urlData)
+            url.attr("id",idCount);
+            idCount++;
             url.addClass("articleLink");
             //Full article modal
             var fullArticle = $("<button>").attr("id",idCount);
@@ -224,8 +227,9 @@ $(document).ready(function() {
             }
         }
     }
+    //show full article
     $(document).on("click",".full-article",function() {
-        window.scrollTo(0, 0);
+        window.scrollTo(0, 0);  //scroll to top to see where modal pops up
         var toPrint = findArticle($(this).attr("data-url"));
         console.log("article to print",toPrint);
         var article = $("<div>");
@@ -238,13 +242,20 @@ $(document).ready(function() {
         content.addClass("snippet");
         translate(lang,idCount + slice +toPrint.content);
         idCount++;
+        var author = $("<h7>").attr("id",idCount);
+        translate(lang,idCount + slice + "Author : " + toPrint.author);
+        author.addClass("author");
+        idCount++;
         var urlData = toPrint.url;
         var url = $("<a>").text("read more").attr("href",urlData)
         url.addClass("articleLink");
+        var img = $("<img>").attr("alt",toPrint.urlToImage);
+        img.addClass("article-picutre");
+        img.attr("src",toPrint.urlToImage);
         var dateString = toPrint.publishedAt.split("T")[0];
         var date = $("<p>").text(dateString);
         date.addClass("date");
-        article.append(title,date,content,url);
+        article.append(title,date,author,img,content,url);
         if (firebase.auth().currentUser) {  //if logged in
             var favorite = $("<i>");
             // favorite.attr("id",i);
