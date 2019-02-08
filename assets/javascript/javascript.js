@@ -129,16 +129,18 @@ $(document).ready(function() {
     function translate (language, text) {
         //Query search validation; no '&' allowed
         var textArray = text.split("&");
-        var newText = "";
-        for (var i = 0; i < textArray.length; i++) {
+        var newText = textArray[0];
+        for (var i = 1; i < textArray.length; i++) {
             newText = newText +"+" +textArray[i];
         }
+        // console.log("/" + newText);
         var transURL = translateURL+ "&lang="+ language +"&text=" +newText;
         //get translation
         $.get(transURL).then(function(response) {
             //The response is in 2 parts separated by the 'slice' which is a series of numbers
             //numbers pass straight through the translation
             var answer = response.text[0].split(slice);
+            // console.log(response.text);
             //The first part is the id (also a number)of the div that will contain the final translation
             $("#"+answer[0]).text(answer[1]);
             //the second is the actual translation
