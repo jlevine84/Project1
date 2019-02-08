@@ -84,6 +84,7 @@ body{
 #walkie-title {
     width: 600px;
     display: block;
+    text-shadow: 0 .5rem 1rem rgba(50, 0, 100, .1)
 }
 
 #parameters {
