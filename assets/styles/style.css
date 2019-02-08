@@ -77,16 +77,30 @@ body{
     padding-left: 0px;
 }
 
-#input-row{
+#input-row {
     margin-top: 20px;   
 }
 
-#parameters, #language {
-    font-family: 'Maven Pro', sans-serif;
-    border-style: solid;
-    border-width: 1px;
-    border-color: rgb(163, 163, 163); 
-    padding: 20px;
+#walkie-title {
+    width: 600px;
+    display: block;
+}
+
+#parameters {
+    width: 500px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 62px 55px 65px 55px;
+
+    box-shadow: 0 3px 20px 0px rgba(0, 0 , 0, 0.1);
+}
+#language {
+    width: 500px;
+    background: #fff;
+    border-radius: 5px;
+    padding: 62px 55px 65px 55px;
+
+    box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
 }
 
 #yanex {
