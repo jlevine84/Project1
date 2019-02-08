@@ -193,7 +193,7 @@ $(document).ready(function() {
             footer.append(div1);
             idCount++;
             
-            //Full article creation
+            //Full article button creation
             var fullArticle = $("<button>").attr("id",idCount);
             translate(lang,idCount + slice + "Full Article");
             idCount++;
@@ -221,15 +221,19 @@ $(document).ready(function() {
                 var div1 = $("<div>").addClass("col-4 right").append(favorite);
                 footer.append(div1);
             }
-            
+            //put article in the correct section
             articleSection.append(article);
         }
     }
     function translateArticles() {
+        //translates articles
         translateAny(articles,articleSection);
+        //translates favorites
         translateAny(favs,favSection);
+        //translates page
         translatePage();
     }
+    //searchs for articles using news api
     function search(term,startDate,sources,sortBy) {
         var URL = newsURL + "q=" + term + "&from=" + startDate + "&sources=" + sources +"&sortBy=" + sortBy;
         URL = URL + newsKey;
@@ -239,9 +243,11 @@ $(document).ready(function() {
                 return false;
             }
             articles = response.articles;
+            //send response to be translated
             translateArticles();
         });
     }
+    //searches through array of elements to find the one that is checked (for the radio buttons)
     function getValue(element) {
         for (var i =0 ; i < element.length ; i++) {
             if (element[i].checked === true) {
@@ -249,7 +255,7 @@ $(document).ready(function() {
             }
         }
     }
-    //Full Article Link
+    //Finds article in either favorites or open articles by url
     function findArticle(url) {
         for (var i =0; i < articles.length; i++) {
             if (url === articles[i].url) {
@@ -262,11 +268,12 @@ $(document).ready(function() {
             }
         }
     }
-    //show full article
+    //show full article on "full article" button click
     $(document).on("click",".full-article",function() {
-        window.scrollTo(0, 0);  //scroll to top to see where modal pops up
+        //scroll to top to see where modal pops up
+        window.scrollTo(0, 0);  
         var toPrint = findArticle($(this).attr("data-url"));
-        console.log("article to print",toPrint);
+        //Taking data, translating it, and placing it in the correct div
         var article = $("<div>");
         article.addClass("article");
         var title = $("<h6>").attr("id",idCount);
@@ -292,7 +299,7 @@ $(document).ready(function() {
         img.attr("src",toPrint.urlToImage);
         
         article.append(title,date,author,img,content,url);
-        if (firebase.auth().currentUser) {  //if logged in
+        if (firebase.auth().currentUser) {  //if logged in, add "favorite" button
             var favorite = $("<i>");
             // favorite.attr("id",i);
             favorite.attr("data-url",urlData);
@@ -306,19 +313,25 @@ $(document).ready(function() {
             }
             article.append(favorite);
         }
-        console.log(article);
+        
+        //clear section
         $("#view-article").html("");
+        //put article in div
         $("#view-article").append(article);
     });
 
     $(document).on("click",".unloved",function() {
         $(this).attr("class","fa-heart fas loved"); //change to solid heart
+        //add to favorites list
         favs.push(articles[$(this).attr("id")]);
+        //update database with new favorites
         database.ref("/" +firebase.auth().currentUser.uid +"/favorites").set({
             favorites : favs
         });
+        //only translate fav section
         translateAny(favs,favSection);
     });
+    //checks favorites for url
     function checkForFav(url) {
         for (var i =0 ; i < favs.length; i++) {
             if (url === favs[i].url) {
@@ -328,24 +341,29 @@ $(document).ready(function() {
         return -1;
     }
     $(document).on("click",".loved",function () {
-        $(this).attr("class","fa-heart far unloved");
-        var unlike = checkForFav($(this).attr("data-url"));
+        $(this).attr("class","fa-heart far unloved");   //change heart
+        var unlike = checkForFav($(this).attr("data-url")); //find location in favs array
         if (unlike > -1) {
-            favs.splice(unlike,1);
+            favs.splice(unlike,1);  //remove this favorite from the array
         }
+        //update the database
         database.ref("/" +firebase.auth().currentUser.uid + "/favorites").set({
             favorites : favs
         });
+        //refresh the favorite section
         translateAny(favs,favSection);
     })
+    //search for articles when form is submitted
     $("#search").submit(function(e) {
         e.preventDefault();
         submit();
     });
+    //search for articles when "search" button clicked
     $("#submit").on("click",function() {
         submit();
     })
     function submit() {
+        //gets values from form
         var subject =$("#subject").val();
         var dateSelect = getValue($("input[name='time']"));
         var date = "";
@@ -362,25 +380,26 @@ $(document).ready(function() {
         console.log(date);
         var source = "";
         var sortBy = getValue($("input[name='sortBy'"));
-        
+        //sends values from forms to search function
         search(subject,date,"",sortBy);
     }
-    // $('.dropdown-toggle').on("click", function() {
-    //     $('.dropdown-toggle').dropdown()
-    // })
+    //When click on a language
     $(".dropdown-item").on("click",function() {
         console.log("got to dropdown");
+        //get language
         lang = $(this).attr("value");
         window.pageLang = lang;
         console.log(window.pageLang);
+        //update database with new language
         database.ref("/" +firebase.auth().currentUser.uid + "/language").set({
             language : lang,
             pageLanguage : window.pageLang
         });
-        // console.log(lang);
+        //translate all articles
         translateArticles();
         
     })
+    //gets a url to send to yandex
     function getURL(language,text) {
         return translateURL+ "&lang="+ language +"&text=" +text;
     }
