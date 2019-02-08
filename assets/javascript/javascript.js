@@ -157,9 +157,18 @@ $(document).ready(function() {
             var urlData = articles[i].url;
             var url = $("<a>").text("read more").attr("href",urlData)
             url.addClass("articleLink");
+            //Full article modal
+            var fullArticle = $("<button>").attr("id",idCount);
+            translate(lang,idCount + slice + "Full Article");
+            idCount++;
+            fullArticle.addClass("full-article");
+            fullArticle.attr("data-url",urlData);
+            fullArticle.attr("data-toggle","modal");
+            fullArticle.attr("data-target",".full-article-modal");
             var dateString = articles[i].publishedAt.split("T")[0];
             var date = $("<p>").text(dateString);
             date.addClass("date");
+            article.append(title,snip,date,url,fullArticle);
             if (firebase.auth().currentUser) {  //if logged in
                 var favorite = $("<i>");
                 favorite.attr("id",i);
@@ -175,7 +184,6 @@ $(document).ready(function() {
                 article.append(favorite);
             }
             
-            article.append(title,snip,date,url);
             articleSection.append(article);
         }
     }
@@ -203,6 +211,59 @@ $(document).ready(function() {
             }
         }
     }
+    //Full Article Link
+    function findArticle(url) {
+        for (var i =0; i < articles.length; i++) {
+            if (url === articles[i].url) {
+                return articles[i];
+            }
+        }
+        for (var i =0; i < favs.length; i++) {
+            if (url === favs[i].url) {
+                return favs[i];
+            }
+        }
+    }
+    $(document).on("click",".full-article",function() {
+        window.scrollTo(0, 0);
+        var toPrint = findArticle($(this).attr("data-url"));
+        console.log("article to print",toPrint);
+        var article = $("<div>");
+        article.addClass("article");
+        var title = $("<h6>").attr("id",idCount);
+        title.addClass("title");
+        translate(lang,idCount + slice + toPrint.title);
+        idCount++;
+        var content = $("<p>").attr("id",idCount);
+        content.addClass("snippet");
+        translate(lang,idCount + slice +toPrint.content);
+        idCount++;
+        var urlData = toPrint.url;
+        var url = $("<a>").text("read more").attr("href",urlData)
+        url.addClass("articleLink");
+        var dateString = toPrint.publishedAt.split("T")[0];
+        var date = $("<p>").text(dateString);
+        date.addClass("date");
+        article.append(title,date,content,url);
+        if (firebase.auth().currentUser) {  //if logged in
+            var favorite = $("<i>");
+            // favorite.attr("id",i);
+            favorite.attr("data-url",urlData);
+            favorite.addClass("fa-heart")
+            //check through favorites and find out if this is one of them; then add class loved/unloved
+            var like = checkForFav(urlData);
+            if (like < 0) {
+                favorite.addClass("far unloved");
+            } else {
+                favorite.addClass("fas loved");
+            }
+            article.append(favorite);
+        }
+        console.log(article);
+        $("#view-article").html("");
+        $("#view-article").append(article);
+    });
+
     $(document).on("click",".unloved",function() {
         $(this).attr("class","fa-heart fas loved"); //change to solid heart
         favs.push(articles[$(this).attr("id")]);
