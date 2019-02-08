@@ -6,7 +6,7 @@ Topics/Ideas: Utilize a Translation API in conjunction with a news search API in
 
 Project Name: Walkie-Talkie
 
-APIs utilized: News API: New York Times; Translation API: Yandex, 
+APIs utilized: News API: News API (yes, that's the name: https://newsapi.org/); Translation API: Yandex, 
 
 New Technologies: Firebase Authentication for users’ to save favorite phrases or Google account.
 

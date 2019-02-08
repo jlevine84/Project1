@@ -2,14 +2,19 @@ var pageLang = "en"; //language all the buttons, etc. are displayed in
 $(document).ready(function() {
     var favs = [];
     var database;
+    //Setting up variables for asynchronus adding of text to divs
     var idCount=1;
     var slice = "/12351/";
+
     var articleSection = $("#articles");
     var favSection = $("#fav-articles")
+    //Currently displayed articles
     var articles = [];
+    //Yandex translation api vars
     var yandexKey = "trnsl.1.1.20190130T012434Z.3dd2c347532d5fa2.316531bda0cbd1d627d27d686ed25ff9b2b799d7";
     var translateURL = "https://translate.yandex.net/api/v1.5/tr.json/translate?";
     translateURL = translateURL + "key=" + yandexKey;
+    //sets default language to english; overwritten later
     var lang = "en";
     var pageLang = "en";
     //FIREBASE JAVASCRIPT
@@ -61,12 +66,14 @@ $(document).ready(function() {
                     //no set language
                     lang = "en";
                     pageLang = "en";
+                    //if no set language set language to default page language (english)
                     database.ref("/" +firebase.auth().currentUser.uid + "/language").set( {
                         language : lang,
                         pageLanguage : pageLang
                     })
                 }
                 try {
+                    //try to retrieve favorites
                     favs = snapshot.val().favorites.favorites;
                     translateArticles();
                 } catch (error) {
@@ -118,22 +125,34 @@ $(document).ready(function() {
     $("#signout").on("click", function() {
         firebase.auth().signOut();
     });
-    //REST OF JAVASCRIPT
+    //
     function translate (language, text) {
-        //CHECK FOR AMPERSANDS
-        var transURL = translateURL+ "&lang="+ language +"&text=" +text;
-        // console.log(transURL);
+        //Query search validation; no '&' allowed
+        var textArray = text.split("&");
+        var newText = "";
+        for (var i = 0; i < textArray.length; i++) {
+            newText = newText +"+" +textArray[i];
+        }
+        var transURL = translateURL+ "&lang="+ language +"&text=" +newText;
+        //get translation
         $.get(transURL).then(function(response) {
+            //The response is in 2 parts separated by the 'slice' which is a series of numbers
+            //numbers pass straight through the translation
             var answer = response.text[0].split(slice);
-            // console.log(answer);
+            //The first part is the id (also a number)of the div that will contain the final translation
             $("#"+answer[0]).text(answer[1]);
+            //the second is the actual translation
+            //this method is required for asynchronus translation
         })
 
     }
+    
+    //News API info
     var newsKey = "&apiKey=bad2768f143a4bd39c2c92889b981643";
     var newsURL = "https://newsapi.org/v2/everything?"
+    
+    //takes a list of articles and a div to put them
     function translateAny(articles,articleSection) {
-        console.log("got here");
         if (articles.length < 1) {
             articleSection.html("<p>No articles found</p>")
             return false;
@@ -142,33 +161,51 @@ $(document).ready(function() {
         articleSection.html("");
         for (var i = 0; i < articles.length;i++) {
             if (i >= limit) {
-                break;
+                break;  //more than 10 articles were returned
             }
+            //Fills section with said articles
             var article = $("<div>");
             article.addClass("article");
+            //sets id to find it asyncrhonously
             var title = $("<h6>").attr("id",idCount);
             title.addClass("title");
+            //function will propogate the final translation into the div with that id, and the translation
             translate(lang,idCount + slice + articles[i].title);
+            //Allows for another unique id to be created after this
             idCount++;
             var snip = $("<p>").attr("id",idCount);
             snip.addClass("snippet");
             translate(lang,idCount + slice +articles[i].description);
             idCount++;
+            var dateString = articles[i].publishedAt.split("T")[0];
+            var date = $("<p>").text(dateString);
+            date.addClass("date");
+
+            //START OF FOOTER
+            var footer = $("<div>").addClass("row");
             var urlData = articles[i].url;
-            var url = $("<a>").text("read more").attr("href",urlData)
+            translate(lang,idCount+slice+"Read More");
+            var url = $("<a>").attr("href",urlData)
+            url.attr("id",idCount);
             url.addClass("articleLink");
-            //Full article modal
+            //put readmore in a div so appears on the left
+            var div1 = $("<div>").addClass("col-4").append(url);    
+            footer.append(div1);
+            idCount++;
+            
+            //Full article creation
             var fullArticle = $("<button>").attr("id",idCount);
             translate(lang,idCount + slice + "Full Article");
             idCount++;
             fullArticle.addClass("full-article");
             fullArticle.attr("data-url",urlData);
+            //will allow it to toggal the full article modal
             fullArticle.attr("data-toggle","modal");
             fullArticle.attr("data-target",".full-article-modal");
-            var dateString = articles[i].publishedAt.split("T")[0];
-            var date = $("<p>").text(dateString);
-            date.addClass("date");
-            article.append(title,snip,date,url,fullArticle);
+            //put in div so appears in centered
+            var div1 = $("<div>").addClass("col-4 center").append(fullArticle);
+            footer.append(div1);
+            article.append(title,snip,date,footer);
             if (firebase.auth().currentUser) {  //if logged in
                 var favorite = $("<i>");
                 favorite.attr("id",i);
@@ -181,7 +218,8 @@ $(document).ready(function() {
                 } else {
                     favorite.addClass("fas loved");
                 }
-                article.append(favorite);
+                var div1 = $("<div>").addClass("col-4 right").append(favorite);
+                footer.append(div1);
             }
             
             articleSection.append(article);
@@ -224,8 +262,9 @@ $(document).ready(function() {
             }
         }
     }
+    //show full article
     $(document).on("click",".full-article",function() {
-        window.scrollTo(0, 0);
+        window.scrollTo(0, 0);  //scroll to top to see where modal pops up
         var toPrint = findArticle($(this).attr("data-url"));
         console.log("article to print",toPrint);
         var article = $("<div>");
@@ -238,13 +277,21 @@ $(document).ready(function() {
         content.addClass("snippet");
         translate(lang,idCount + slice +toPrint.content);
         idCount++;
-        var urlData = toPrint.url;
-        var url = $("<a>").text("read more").attr("href",urlData)
-        url.addClass("articleLink");
+        var author = $("<h7>").attr("id",idCount);
+        translate(lang,idCount + slice + "Author : " + toPrint.author);
+        author.addClass("author");
+        idCount++;
         var dateString = toPrint.publishedAt.split("T")[0];
         var date = $("<p>").text(dateString);
         date.addClass("date");
-        article.append(title,date,content,url);
+        var urlData = toPrint.url;
+        var url = $("<a>").text("read more").attr("href",urlData)
+        url.addClass("articleLink");
+        var img = $("<img>").attr("alt",toPrint.urlToImage);
+        img.addClass("article-picutre");
+        img.attr("src",toPrint.urlToImage);
+        
+        article.append(title,date,author,img,content,url);
         if (firebase.auth().currentUser) {  //if logged in
             var favorite = $("<i>");
             // favorite.attr("id",i);

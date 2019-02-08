@@ -52,7 +52,12 @@ body{
 .articleLink {
     text-decoration: underline;
 }
-
+.right {
+    text-align :right;
+}
+.center {
+    text-align:center;
+}
 #header-row{
     margin-top: 2%;
     height: auto;                         
