@@ -392,11 +392,13 @@ $(document).ready(function() {
         lang = $(this).attr("value");
         window.pageLang = lang;
         console.log(window.pageLang);
-        //update database with new language
-        database.ref("/" +firebase.auth().currentUser.uid + "/language").set({
-            language : lang,
-            pageLanguage : window.pageLang
-        });
+        //update database with new language if logged in 
+        if (firebase.auth().currentUser) {
+            database.ref("/" +firebase.auth().currentUser.uid + "/language").set({
+                language : lang,
+                pageLanguage : window.pageLang
+            });
+        }
         //translate all articles
         translateArticles();
         
@@ -407,6 +409,8 @@ $(document).ready(function() {
     }
     function translatePage() {
         //Translate Every element on the page
+        console.log("got to translatePage" + window.pageLang);
+        pageLang = window.pageLang;
         $.get(getURL(pageLang, "Powered By")).then(function(response) {
             $("#yandex").text(response.text + " Yandex");
         });
