@@ -297,7 +297,7 @@ $(document).ready(function() {
         var url = $("<a>").text("read more").attr("href",urlData)
         url.addClass("articleLink");
         var img = $("<img>").attr("alt",toPrint.urlToImage);
-        img.addClass("article-picutre");
+        img.addClass("article-picture");
         img.attr("src",toPrint.urlToImage);
         
         article.append(title,date,author,img,content,url);
@@ -422,13 +422,13 @@ $(document).ready(function() {
             $("#password-label2").text(response.text);
         });
         $.get(getURL(pageLang, "Sign in")).then(function(response) {
-            $("#sign-in").text(response.text);
+            $("#sign-in-btn").text(response.text);
         });
         $.get(getURL(pageLang, "Don't have a login? Sign Up!")).then(function(response) {
             $("#sign-up-label").text(response.text);
         });
         $.get(getURL(pageLang, "Sign Up")).then(function(response) {
-            $("#sign-up").text(response.text);
+            $("#sign-up-btn").text(response.text);
         });
         $.get(getURL(pageLang, "Logout")).then(function(response) {
             $("#signout").text(response.text);
@@ -480,7 +480,8 @@ $(document).ready(function() {
         });
         $.get(getURL(pageLang, "My Favorites")).then(function(response) {
             $("#favorites-title").text(response.text);
-            $("#fav-footer").text(response.text);            
+            $("#fav-footer").text(response.text);
+            $("#btn-favorites").text(response.text);            
         });
         $.get(getURL(pageLang, "Submit")).then(function(response) {
             $("#submit").text(response.text);
